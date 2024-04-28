@@ -71,14 +71,22 @@ body {
   background-color: var(--light-grayish);
   display: grid;
   place-content: center;
-  margin-top: 15%;
+  min-height: 100vh;
 }
 
 .main {
   display: grid;
-  grid-template-columns: repeat(4, 255px);
-  grid-template-rows: repeat(2, 270px);
+  grid-template-areas:
+    "one"
+    "two"
+    "three"
+    "four"
+    "five";
+  grid-auto-columns: 1fr;
   gap: 32px;
+  padding-block: 2rem;
+  width: min(95%, 70rem);
+  margin-inline: auto;
   color: var(--white);
 }
 
@@ -151,21 +159,60 @@ body {
   background-image: url(images/bg-pattern-quotation.svg);
   background-repeat: no-repeat;
   background-position: 79% 0%;
+  grid-area: one;
 }
 
 .card-light {
   background-color: var(--very-dark-grayish);
+  grid-area: two;
 }
 .card-white {
   background-color: var(--white);
   color: var(--very-dark-grayish);
+  grid-area: three;
 }
 .card-dark {
   background-color: var(--very-dark-blackish);
-  grid-column: -4/-2;
+  grid-area: four;
 }
 .card-long {
   background-color: var(--white);
-  grid-column: 4/5;
-  grid-row: -3/-1;
+  grid-area: five;
+}
+
+@media (min-width: 33em) {
+  .main {
+    grid-template-areas:
+      "one one"
+      "two three"
+      "five five"
+      "four four";
+  }
+}
+
+@media (min-width: 38em) {
+  .main {
+    grid-template-areas:
+      "one one"
+      "two five"
+      "three five"
+      "four four";
+  }
+}
+
+@media (min-width: 54em) {
+  .main {
+    grid-template-areas:
+      "one one two"
+      "five five five"
+      "three four four";
+  }
+}
+
+@media (min-width: 75em) {
+  .main {
+    grid-template-areas:
+      "one one two five"
+      "three four four five";
+  }
 }
